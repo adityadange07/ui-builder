@@ -10,90 +10,27 @@ html, body {
   font-family: 'Segoe UI', sans-serif;
   background-color: #f9f9f9;
   display: flex;
-  flex-direction: row;
   gap: 10px;
   padding: 10px;
   overflow: hidden;
 }
 
-#toolbox,
-#canvas,
-#code-output {
-  height: 100%;
-  padding: 15px;
-  border-radius: 10px;
-  overflow: auto;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Toolbox */
+/* TOOLBOX */
 #toolbox {
   width: 20%;
+  height: 100%;
   background-color: #ffffff;
   border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-}
-
-/* Canvas */
-#canvas {
-  width: 70%;
-  background-color: #ffffff;
-  border: 1px solid #ddd;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#canvas .screen {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  background: #fefefe;
-  border: 2px dashed #ccc;
-  padding: 20px;
-  border-radius: 6px;
-  overflow: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #777;
-  font-size: 1.1em;
-}
-
-/* Code Output */
-#code-output {
-  width: 20%;
-  background-color: #ffffff;
-  border: 1px solid #ddd;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-#code-output button {
-  padding: 10px;
-  font-size: 1em;
-  background-color: #4a90e2;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-#code-output button:hover {
-  background-color: #357bd8;
-}
-
-#code-output pre {
-  background-color: #f4f4f4;
-  padding: 10px;
-  border-radius: 5px;
-  font-size: 0.9em;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
   overflow: auto;
 }
 
-/* Draggable Tools */
+/* DRAGGABLE TOOLS */
 .tool {
   padding: 10px;
   background-color: #f0f0f0;
@@ -106,4 +43,73 @@ html, body {
 
 .tool:hover {
   background-color: #e0e0e0;
+}
+
+/* CANVAS */
+#canvas {
+  width: 60%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: 60px;
+  gap: 5px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+  overflow: auto;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+/* GRID ITEMS INSIDE CANVAS */
+.grid-item {
+  background: #e0eaff;
+  border: 1px dashed #aaa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9em;
+  border-radius: 4px;
+  padding: 5px;
+  min-height: 40px;
+}
+
+/* CODE OUTPUT PANEL */
+#code-output {
+  width: 20%;
+  height: 100%;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+  overflow: auto;
+}
+
+#code-output button {
+  padding: 10px;
+  font-size: 1em;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+#code-output button:hover {
+  background-color: #357bd8;
+}
+
+#code-output pre {
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 0.9em;
+  overflow: auto;
+  white-space: pre-wrap;
 }
