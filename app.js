@@ -1,3 +1,5 @@
+let draggedCanvasElement = null;
+
 document.querySelectorAll('.tool').forEach(tool => {
   tool.addEventListener('dragstart', event => {
     event.dataTransfer.setData('type', tool.dataset.type);
@@ -16,19 +18,27 @@ function drop(event) {
   const x = event.clientX;
   const y = event.clientY;
 
-  // Calculate which column and row the drop happened in
   const canvasRect = canvas.getBoundingClientRect();
   const colWidth = canvas.offsetWidth / 12;
-  const rowHeight = 60; // Same as grid-auto-rows
+  const rowHeight = 60;
 
   const col = Math.floor((x - canvasRect.left) / colWidth) + 1;
   const row = Math.floor((y - canvasRect.top) / rowHeight) + 1;
 
-  // Create the new element
+  if (type === 'canvas-move' && draggedCanvasElement) {
+    draggedCanvasElement.style.gridColumn = col;
+    draggedCanvasElement.style.gridRow = row;
+    draggedCanvasElement = null;
+    return;
+  }
+
+  // Original drop logic for new elements
   const newEl = document.createElement('div');
   newEl.className = 'grid-item';
   newEl.style.gridColumn = col;
   newEl.style.gridRow = row;
+  newEl.setAttribute('draggable', true);
+  newEl.addEventListener('dragstart', handleCanvasDragStart);
   newEl.textContent = type.charAt(0).toUpperCase() + type.slice(1);
 
   // Optionally create real HTML elements
@@ -50,9 +60,16 @@ function drop(event) {
     newEl.innerHTML = '';
     newEl.appendChild(container);
   }
-
+  newEl.setAttribute('draggable', true);
+  newEl.addEventListener('dragstart', handleCanvasDragStart);
   canvas.appendChild(newEl);
 }
+
+function handleCanvasDragStart(event) {
+  draggedCanvasElement = event.target;
+  event.dataTransfer.setData('type', 'canvas-move'); // So we know it's a move
+}
+
 function generateCode() {
   const codeContainer = document.getElementById('code');
   const canvas = document.getElementById('canvas');
