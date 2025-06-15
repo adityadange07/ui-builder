@@ -1,0 +1,4 @@
+body { display: flex; gap: 10px; font-family: sans-serif; }
+#toolbox, #canvas, #code-output { padding: 10px; border: 1px solid #ccc; min-height: 300px; flex: 1; }
+.tool { margin: 5px; padding: 5px; border: 1px solid #000; cursor: grab; background: #f0f0f0; }
+#canvas { background: #fafafa; }
