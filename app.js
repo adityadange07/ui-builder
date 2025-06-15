@@ -53,3 +53,26 @@ function drop(event) {
 
   canvas.appendChild(newEl);
 }
+function generateCode() {
+  const codeContainer = document.getElementById('code');
+  const canvas = document.getElementById('canvas');
+  const elements = canvas.querySelectorAll('.grid-item');
+
+  let htmlOutput = '';
+
+  elements.forEach((el) => {
+    const child = el.firstElementChild;
+
+    if (child) {
+      if (child.tagName === 'BUTTON') {
+        htmlOutput += `<button>${child.textContent}</button>\n`;
+      } else if (child.tagName === 'INPUT') {
+        htmlOutput += `<input placeholder="${child.placeholder}" />\n`;
+      } else if (child.tagName === 'DIV') {
+        htmlOutput += `<div>${child.textContent}</div>\n`;
+      }
+    }
+  });
+
+  codeContainer.textContent = htmlOutput || '<!-- No components on canvas -->';
+}
