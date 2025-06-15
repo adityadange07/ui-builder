@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JS UI Builder</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div id="toolbox">
+    <div class="tool" draggable="true" data-type="button">Button</div>
+    <div class="tool" draggable="true" data-type="input">Input</div>
+    <div class="tool" draggable="true" data-type="div">Container</div>
+  </div>
+
+  <div id="canvas" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <p>Drop components here</p>
+  </div>
+
+  <div id="code-output">
+    <button onclick="generateCode()">Generate Code</button>
+    <pre id="code"></pre>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
