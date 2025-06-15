@@ -1,4 +1,109 @@
-body { display: flex; gap: 10px; font-family: sans-serif; }
-#toolbox, #canvas, #code-output { padding: 10px; border: 1px solid #ccc; min-height: 300px; flex: 1; }
-.tool { margin: 5px; padding: 5px; border: 1px solid #000; cursor: grab; background: #f0f0f0; }
-#canvas { background: #fafafa; }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  padding: 10px;
+  overflow: hidden;
+}
+
+#toolbox,
+#canvas,
+#code-output {
+  height: 100%;
+  padding: 15px;
+  border-radius: 10px;
+  overflow: auto;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Toolbox */
+#toolbox {
+  width: 20%;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Canvas */
+#canvas {
+  width: 70%;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#canvas .screen {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #fefefe;
+  border: 2px dashed #ccc;
+  padding: 20px;
+  border-radius: 6px;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #777;
+  font-size: 1.1em;
+}
+
+/* Code Output */
+#code-output {
+  width: 20%;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#code-output button {
+  padding: 10px;
+  font-size: 1em;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#code-output button:hover {
+  background-color: #357bd8;
+}
+
+#code-output pre {
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 0.9em;
+  overflow: auto;
+}
+
+/* Draggable Tools */
+.tool {
+  padding: 10px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: grab;
+  text-align: center;
+  transition: background 0.2s;
+}
+
+.tool:hover {
+  background-color: #e0e0e0;
+}
